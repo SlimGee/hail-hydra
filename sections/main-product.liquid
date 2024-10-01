@@ -39,18 +39,37 @@
     }
   {%- endstyle -%}
 
-  <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+  <script
+    src="{{ 'product-info.js' | asset_url }}"
+    defer="defer"
+  ></script>
+  <script
+    src="{{ 'product-form.js' | asset_url }}"
+    defer="defer"
+  ></script>
   {%- if product.quantity_price_breaks_configured? -%}
-    <script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
+    <script
+      src="{{ 'show-more.js' | asset_url }}"
+      defer="defer"
+    ></script>
+    <script
+      src="{{ 'price-per-item.js' | asset_url }}"
+      defer="defer"
+    ></script>
   {%- endif -%}
 
   {% if section.settings.image_zoom == 'hover' %}
-    <script id="EnableZoomOnHover-main" src="{{ 'magnify.js' | asset_url }}" defer="defer"></script>
+    <script
+      id="EnableZoomOnHover-main"
+      src="{{ 'magnify.js' | asset_url }}"
+      defer="defer"
+    ></script>
   {% endif %}
   {%- if request.design_mode -%}
-    <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
+    <script
+      src="{{ 'theme-editor.js' | asset_url }}"
+      defer="defer"
+    ></script>
   {%- endif -%}
 
   {%- assign first_3d_model = product.media | where: 'media_type', 'model' | first -%}
@@ -97,16 +116,26 @@
                   {{- block.settings.text -}}
                 </p>
               {%- when 'title' -%}
-                <div class="product__title" {{ block.shopify_attributes }}>
+                <div
+                  class="product__title"
+                  {{ block.shopify_attributes }}
+                >
                   <h1>{{ product.title | escape }}</h1>
-                  <a href="{{ product.url }}" class="product__title">
+                  <a
+                    href="{{ product.url }}"
+                    class="product__title"
+                  >
                     <h2 class="h1">
                       {{ product.title | escape }}
                     </h2>
                   </a>
                 </div>
               {%- when 'price' -%}
-                <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+                <div
+                  id="price-{{ section.id }}"
+                  role="status"
+                  {{ block.shopify_attributes }}
+                >
                   {%- render 'price',
                     product: product,
                     use_variant: true,
@@ -115,8 +144,13 @@
                   -%}
                 </div>
                 {%- if product.quantity_price_breaks_configured? -%}
-                  <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
-                    <span>{{ 'products.product.volume_pricing.note' | t }}</span>
+                  <div
+                    class="volume-pricing-note"
+                    id="Volume-Note-{{ section.id }}"
+                  >
+                    <span>
+                      {{- 'products.product.volume_pricing.note' | t -}}
+                    </span>
                   </div>
                 {%- endif -%}
                 {%- if cart.taxes_included or cart.duties_included or shop.shipping_policy.body != blank -%}
@@ -136,7 +170,11 @@
                 <div {{ block.shopify_attributes }}>
                   {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
                   {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
-                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                    <input
+                      type="hidden"
+                      name="id"
+                      value="{{ product.selected_or_first_available_variant.id }}"
+                    >
                     {{ form | payment_terms }}
                   {%- endform -%}
                 </div>
@@ -152,7 +190,11 @@
                       {%- if product.selected_or_first_available_variant.inventory_quantity
                           <= block.settings.inventory_threshold
                       -%}
-                        <svg width="15" height="15" aria-hidden="true">
+                        <svg
+                          width="15"
+                          height="15"
+                          aria-hidden="true"
+                        >
                           <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(238,148,65, 0.3)"/>
                           <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(238,148,65)"/>
                         </svg>
@@ -165,7 +207,11 @@
                           {{- 'products.product.inventory_low_stock' | t -}}
                         {%- endif -%}
                       {%- else -%}
-                        <svg width="15" height="15" aria-hidden="true">
+                        <svg
+                          width="15"
+                          height="15"
+                          aria-hidden="true"
+                        >
                           <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
                           <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
                         </svg>
@@ -180,13 +226,21 @@
                       {%- endif -%}
                     {%- else -%}
                       {%- if product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
-                        <svg width="15" height="15" aria-hidden="true">
+                        <svg
+                          width="15"
+                          height="15"
+                          aria-hidden="true"
+                        >
                           <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
                           <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
                         </svg>
                         {{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
                       {%- else -%}
-                        <svg width="15" height="15" aria-hidden="true">
+                        <svg
+                          width="15"
+                          height="15"
+                          aria-hidden="true"
+                        >
                           <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(200,200,200, 0.3)"/>
                           <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(200,200,200)"/>
                         </svg>
@@ -197,7 +251,10 @@
                 </p>
               {%- when 'description' -%}
                 {%- if product.description != blank -%}
-                  <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
+                  <div
+                    class="product__description rte quick-add-hidden"
+                    {{ block.shopify_attributes }}
+                  >
                     {{ product.description }}
                   </div>
                 {%- endif -%}
@@ -208,13 +265,16 @@
                   role="status"
                   {{ block.shopify_attributes }}
                 >
-                  <span class="visually-hidden">{{ 'products.product.sku' | t }}:</span>
+                  <span class="visually-hidden">{{- 'products.product.sku' | t }}:</span>
                   {{- product.selected_or_first_available_variant.sku -}}
                 </p>
               {%- when 'custom_liquid' -%}
                 {{ block.settings.custom_liquid }}
               {%- when 'collapsible_tab' -%}
-                <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
+                <div
+                  class="product__accordion accordion quick-add-hidden"
+                  {{ block.shopify_attributes }}
+                >
                   <details id="Details-{{ block.id }}-{{ section.id }}">
                     <summary>
                       <div class="summary__title">
@@ -225,7 +285,10 @@
                       </div>
                       {% render 'icon-caret' %}
                     </summary>
-                    <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+                    <div
+                      class="accordion__content rte"
+                      id="ProductAccordion-{{ block.id }}-{{ section.id }}"
+                    >
                       {{ block.settings.content }}
                       {{ block.settings.page.content }}
                     </div>
@@ -243,7 +306,10 @@
                     | item_count_for_variant: product.selected_or_first_available_variant.id
                   -%}
                   {% # theme-check-enable %}
-                  <label class="quantity__label form__label" for="Quantity-{{ section.id }}">
+                  <label
+                    class="quantity__label form__label"
+                    for="Quantity-{{ section.id }}"
+                  >
                     {{ 'products.product.quantity.label' | t }}
                     <span class="quantity__rules-cart{% if cart_qty == 0 %} hidden{% endif %}">
                       {%- render 'loading-spinner' -%}
@@ -255,8 +321,16 @@
                     </span>
                   </label>
                   <div class="price-per-item__container">
-                    <quantity-input class="quantity" data-url="{{ product.url }}" data-section="{{ section.id }}">
-                      <button class="quantity__button" name="minus" type="button">
+                    <quantity-input
+                      class="quantity"
+                      data-url="{{ product.url }}"
+                      data-section="{{ section.id }}"
+                    >
+                      <button
+                        class="quantity__button"
+                        name="minus"
+                        type="button"
+                      >
                         <span class="visually-hidden">
                           {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
                         </span>
@@ -278,7 +352,11 @@
                         value="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
                         form="{{ product_form_id }}"
                       >
-                      <button class="quantity__button" name="plus" type="button">
+                      <button
+                        class="quantity__button"
+                        name="plus"
+                        type="button"
+                      >
                         <span class="visually-hidden">
                           {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
                         </span>
@@ -370,7 +448,10 @@
                       </price-per-item>
                     {%- endif -%}
                   </div>
-                  <div class="quantity__rules caption" id="Quantity-Rules-{{ section.id }}">
+                  <div
+                    class="quantity__rules caption"
+                    id="Quantity-Rules-{{ section.id }}"
+                  >
                     {%- if product.selected_or_first_available_variant.quantity_rule.increment > 1 -%}
                       <span class="divider">
                         {{-
@@ -397,12 +478,20 @@
                     {%- endif -%}
                   </div>
                   {%- if product.quantity_price_breaks_configured? -%}
-                    <volume-pricing class="parent-display" id="Volume-{{ section.id }}">
+                    <volume-pricing
+                      class="parent-display"
+                      id="Volume-{{ section.id }}"
+                    >
                       {%- if product.selected_or_first_available_variant.quantity_price_breaks.size > 0 -%}
-                        <span class="caption-large">{{ 'products.product.volume_pricing.title' | t }}</span>
+                        <span class="caption-large">
+                          {{- 'products.product.volume_pricing.title' | t -}}
+                        </span>
                         <ul class="list-unstyled">
                           <li>
-                            <span>{{ product.selected_or_first_available_variant.quantity_rule.min }}+</span>
+                            <span>
+                              {{- product.selected_or_first_available_variant.quantity_rule.min -}}
+                              +</span
+                            >
                             {%- assign price = product.selected_or_first_available_variant.price
                               | money_with_currency
                             -%}
@@ -431,7 +520,8 @@
                               type="button"
                             >
                               <span class="label-show-more label-text"
-                                ><span aria-hidden="true">+ </span>{{ 'products.facets.show_more' | t }}
+                                ><span aria-hidden="true">+ </span>
+                                {{- 'products.facets.show_more' | t }}
                               </span>
                             </button>
                           </show-more-button>
@@ -440,6 +530,8 @@
                     </volume-pricing>
                   {%- endif -%}
                 </div>
+              {%- when 'customizer' -%}
+                {% render 'customizer', block: block, product: product, section: section %}
               {%- when 'popup' -%}
                 <modal-opener
                   class="product-popup-modal__opener quick-add-hidden"
@@ -526,15 +618,22 @@
                     >
                       <div class="complementary-products__container">
                         {%- if block.settings.make_collapsible_row -%}
-                          <details id="Details-{{ block.id }}-{{ section.id }}" open>
+                          <details
+                            id="Details-{{ block.id }}-{{ section.id }}"
+                            open
+                          >
                             <summary>
                         {%- endif %}
                         <div class="summary__title">
                           {%- if block.settings.make_collapsible_row -%}
                             {% render 'icon-accordion', icon: block.settings.icon %}
-                            <h2 class="h4 accordion__title">{{ block.settings.block_heading }}</h2>
+                            <h2 class="h4 accordion__title">
+                              {{ block.settings.block_heading }}
+                            </h2>
                           {%- else -%}
-                            <h2 class="h3 accordion__title">{{ block.settings.block_heading }}</h2>
+                            <h2 class="h3 accordion__title">
+                              {{ block.settings.block_heading }}
+                            </h2>
                           {%- endif -%}
                         </div>
                         {%- if block.settings.make_collapsible_row -%}
@@ -549,7 +648,7 @@
                           -%}
                           <div
                             id="Slider-{{ block.id }}"
-                            class="contains-card contains-card--product complementary-slider grid grid--1-col slider slider--everywhere"
+                            class="grid contains-card contains-card--product complementary-slider grid--1-col slider slider--everywhere"
                             role="list"
                             {% if number_of_slides > 1 %}
                               aria-label="{{ 'general.slider.name' | t }}"
@@ -567,7 +666,10 @@
                                   aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
                                 {% endif %}
                               >
-                                <ul class="list-unstyled" role="list">
+                                <ul
+                                  class="list-unstyled"
+                                  role="list"
+                                >
                                   {%- for product in recommendations.products
                                     limit: block.settings.products_per_page
                                     offset: continue
@@ -610,8 +712,12 @@
                                 {%- if block.settings.pagination_style == 'counter' -%}
                                   <span class="slider-counter--current">1</span>
                                   <span aria-hidden="true"> / </span>
-                                  <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
-                                  <span class="slider-counter--total">{{ number_of_slides }}</span>
+                                  <span class="visually-hidden">
+                                    {{- 'general.slider.of' | t -}}
+                                  </span>
+                                  <span class="slider-counter--total">
+                                    {{- number_of_slides -}}
+                                  </span>
                                 {%- else -%}
                                   <div class="slideshow__control-wrapper">
                                     {%- for i in (1..number_of_slides) -%}
@@ -651,14 +757,22 @@
                   {{ 'component-complementary-products.css' | asset_url | stylesheet_tag }}
                   {%- if block.settings.enable_quick_add -%}
                     {{ 'quick-add.css' | asset_url | stylesheet_tag }}
-                    <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+                    <script
+                      src="{{ 'quick-add.js' | asset_url }}"
+                      defer="defer"
+                    ></script>
                   {%- endif -%}
                 </product-recommendations>
               {%- when 'icon-with-text' -%}
                 {% render 'icon-with-text', block: block %}
+              {%- when 'custom-field' -%}
+                {% render 'custom-field', block: block %}
             {%- endcase -%}
           {%- endfor -%}
-          <a href="{{ product.url }}" class="link product__view-details animate-arrow">
+          <a
+            href="{{ product.url }}"
+            class="link product__view-details animate-arrow"
+          >
             {{ 'products.product.view_full_details' | t }}
             {% render 'icon-arrow' %}
           </a>
@@ -670,7 +784,11 @@
 
     {% assign popups = section.blocks | where: 'type', 'popup' %}
     {%- for block in popups -%}
-      <modal-dialog id="PopupModal-{{ block.id }}" class="product-popup-modal" {{ block.shopify_attributes }}>
+      <modal-dialog
+        id="PopupModal-{{ block.id }}"
+        class="product-popup-modal"
+        {{ block.shopify_attributes }}
+      >
         <div
           role="dialog"
           aria-label="{{ block.settings.text }}"
@@ -695,15 +813,27 @@
     {%- endfor -%}
 
     {%- if product.media.size > 0 -%}
-      <script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>
-      <script src="{{ 'media-gallery.js' | asset_url }}" defer="defer"></script>
+      <script
+        src="{{ 'product-modal.js' | asset_url }}"
+        defer="defer"
+      ></script>
+      <script
+        src="{{ 'media-gallery.js' | asset_url }}"
+        defer="defer"
+      ></script>
     {%- endif -%}
 
     {%- if first_3d_model -%}
-      <script type="application/json" id="ProductJSON-{{ product.id }}">
+      <script
+        type="application/json"
+        id="ProductJSON-{{ product.id }}"
+      >
         {{ product.media | where: 'media_type', 'model' | json }}
       </script>
-      <script src="{{ 'product-model.js' | asset_url }}" defer></script>
+      <script
+        src="{{ 'product-model.js' | asset_url }}"
+        defer
+      ></script>
     {%- endif -%}
 
     {%- liquid
@@ -940,6 +1070,18 @@
     {
       "type": "custom_liquid",
       "name": "t:sections.custom-liquid.name",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "custom_liquid",
+          "label": "t:sections.custom-liquid.settings.custom_liquid.label",
+          "info": "t:sections.custom-liquid.settings.custom_liquid.info"
+        }
+      ]
+    },
+    {
+      "type": "customizer",
+      "name": "t:sections.customizer.name",
       "settings": [
         {
           "type": "liquid",

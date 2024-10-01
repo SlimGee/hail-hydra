@@ -1,0 +1,163 @@
+<div class="w-full">
+  <div class="p-5 w-full border">
+    <div class="uppercase">wardrobe door settings</div>
+
+    <div class="w-full">
+      <div class="flex flex-col">
+        <label for="wardrobe-name !block">Set Name</label>
+        <input
+          type="text"
+          class="rounded border-gray-200 !py-5 !text-2xl"
+          form="{{ 'product-form-' | append: section.id }}"
+          name="properties[Set Name]"
+        >
+      </div>
+
+      <div class="uppercase">measurements</div>
+      <div class="flex space-x-4 !w-full">
+        <div class="!flex-1">
+          <label for="wardrobe-name">Top Width</label>
+          <input
+            type="text"
+            class="rounded border-gray-200 !py-5 !text-2xl !w-full"
+            form="{{ 'product-form-' | append: section.id }}"
+            name="properties[Door Opening Top Width]"
+          >
+        </div>
+
+        <div class=" !flex-1">
+          <label for="wardrobe-name">Bottom Width</label>
+          <input
+            type="text"
+            class="rounded border-gray-200 !py-5 !text-2xl !w-full"
+            form="{{ 'product-form-' | append: section.id }}"
+            name="properties[Door Opening Bottom Width]"
+          >
+        </div>
+      </div>
+
+      <div class="flex space-x-4 !w-full mt-4">
+        <div class="!flex-1">
+          <label for="wardrobe-name">Left Height</label>
+          <input
+            type="text"
+            class="rounded border-gray-200 !py-5 !text-2xl !w-full"
+            form="{{ 'product-form-' | append: section.id }}"
+            name="properties[Door Opening Left Height]"
+          >
+        </div>
+
+        <div class=" !flex-1">
+          <label for="wardrobe-name">Right Height</label>
+          <input
+            type="text"
+            class="rounded border-gray-200 !py-5 !text-2xl !w-full"
+            form="{{ 'product-form-' | append: section.id }}"
+            name="properties[Door Opening Right Height]"
+          >
+        </div>
+      </div>
+
+      <div class="mt-16 uppercase">Door and track style</div>
+      <div>
+        {% comment %}
+            <div class="flex mt-3 !justify-between items-center">
+              <div>
+                <label for="">Number of doors</label>
+              </div>
+              <div class="flex quantity">
+                <button
+                  class="quantity__button"
+                  name="minus"
+                  type="button"
+                >
+                  {% render 'icon-minus' %}
+                </button>
+
+                <input
+                  type="text"
+                  value="2"
+                  class="py-5 w-full text-2xl text-center border-gray-200"
+                >
+                <button
+                  class="quantity__button"
+                  name="plus"
+                  type="button"
+                >
+                  {% render 'icon-plus' %}
+                </button>
+              </div>
+            </div>
+          <div class="mt-3">
+            <div>
+              <label
+                for="location"
+                class="block font-medium leading-6"
+                >Doors are sitting on</label
+              >
+              <select
+                id="location"
+                name="location"
+                class="block prounded border-gray-200 !py-5 !text-2xl !w-full pr-10 pl-3 mt-2 text-gray-900 rounded-md border-0 ring-1 ring-inset ring-gray-300 sm:text-sm sm:leading-6 focus:ring-2 focus:ring-indigo-600"
+              >
+                <option>Existing floor batten</option>
+                <option>Carpet</option>
+                <option>Concrete</option>
+                <option>Tiles</option>
+                <option>Timber</option>
+              </select>
+            </div>
+          </div>
+        {% endcomment %}
+
+        <div class="mt-3">
+          <div>
+            <label
+              for="location"
+              class="block font-medium leading-6"
+              >Frame color</label
+            >
+            <select
+              form="{{ 'product-form-' | append: section.id }}"
+              name="properties[Frame Color]"
+              id="location"
+              name="location"
+              class="block prounded border-gray-200 !py-5 !text-2xl !w-full pr-10 pl-3 mt-2 text-gray-900 rounded-md border-0 ring-1 ring-inset ring-gray-300 sm:text-sm sm:leading-6 focus:ring-2 focus:ring-indigo-600"
+            >
+              <option>White</option>
+              <option>Black</option>
+              <option>Bright Natural</option>
+              <option>Matt Natural</option>
+            </select>
+          </div>
+        </div>
+
+        {% comment %}
+          <div class="mt-16 uppercase">Door type and insert colors</div>
+
+          <div class="mt-3">
+            <div>
+              <label
+                for="location"
+                class="block font-medium leading-6"
+              >
+                Insert
+              </label>
+              <select
+                id="location"
+                name="location"
+                class="block prounded border-gray-200 !py-5 !text-2xl !w-full pr-10 pl-3 mt-2 text-gray-900 rounded-md border-0 ring-1 ring-inset ring-gray-300 sm:text-sm sm:leading-6 focus:ring-2 focus:ring-indigo-600"
+              >
+                <option>Mirror</option>
+                <option>Gyprock</option>
+                <option>Painted Glass</option>
+                <option>Vinyl</option>
+                <option>Colonial</option>
+              </select>
+            </div>
+          </div>
+        {% endcomment %}
+      </div>
+    </div>
+  </div>
+</div>
