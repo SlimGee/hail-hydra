@@ -15,21 +15,21 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Design and order your sliding wardrobe doors online.",
+            "heading": "Bespoke sliding wardrobe.",
             "heading_size": "h0"
           }
         },
         "text": {
           "type": "text",
           "settings": {
-            "text": "Give customers details about the banner image(s) or content on the template.",
-            "text_style": "body"
+            "text": "Design your and order your own custom sliding does",
+            "text_style": "subtitle"
           }
         },
         "button": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "Shop all",
+            "button_label_1": "Design Yours",
             "button_link_1": "shopify://collections/all",
             "button_style_secondary_1": true,
             "button_label_2": "",
@@ -44,6 +44,7 @@
         "button"
       ],
       "settings": {
+        "image": "shopify://shop_images/comfortable-living-room-cat.jpg",
         "image_overlay_opacity": 40,
         "image_height": "large",
         "desktop_content_position": "bottom-center",
