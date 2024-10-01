@@ -63,14 +63,14 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Talk about your brand",
+            "heading": "Customize right to the last mm",
             "heading_size": "h1"
           }
         },
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+            "text": "<p>You have the freedom to chose frame style, color, number of doors and everything else that come after</p>"
           }
         }
       },
@@ -85,34 +85,6 @@
         "full_width": true,
         "padding_top": 40,
         "padding_bottom": 0
-      }
-    },
-    "featured_collection": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "full_width": false,
-        "show_view_all": false,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 28,
-        "padding_bottom": 36
       }
     },
     "collage": {
@@ -144,7 +116,7 @@
         "collection-1"
       ],
       "settings": {
-        "heading": "Multimedia collage",
+        "heading": "What others have designed before",
         "heading_size": "h2",
         "desktop_layout": "left",
         "mobile_layout": "collage",
@@ -174,8 +146,8 @@
         "column1": {
           "type": "column",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "title": "Warranty",
+            "text": "<p>Experience peace of mind with our durable designed wardrobes guaranteed with a 5-year warranty. Opt for quality and reliability.</p>",
             "link_label": "",
             "link": ""
           }
@@ -183,8 +155,8 @@
         "column2": {
           "type": "column",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "title": "Country wide delivery",
+            "text": "<p>Experience the convenience of nationwide delivery. We bring our products directly to your doorstep.</p>",
             "link_label": "",
             "link": ""
           }
@@ -192,8 +164,8 @@
         "column3": {
           "type": "column",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "title": "It's Custom",
+            "text": "<p>Customize your wardrobe with our 'design it yourself' options. Create a closet that fits your style perfectly.</p>",
             "link_label": "",
             "link": ""
           }
@@ -225,7 +197,6 @@
   "order": [
     "image_banner",
     "rich_text",
-    "featured_collection",
     "collage",
     "video",
     "multicolumn"
