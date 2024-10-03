@@ -1,10 +1,25 @@
-<html class="js" lang="{{ request.locale.iso_code }}">
+<html
+  class="js"
+  lang="{{ request.locale.iso_code }}"
+>
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="">
-    <link rel="canonical" href="{{ canonical_url }}">
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    >
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1"
+    >
+    <meta
+      name="theme-color"
+      content=""
+    >
+    <link
+      rel="canonical"
+      href="{{ canonical_url }}"
+    >
 
     {%- if settings.favicon != blank -%}
       <link
@@ -36,24 +51,56 @@
     </title>
 
     {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
+      <meta
+        name="description"
+        content="{{ page_description | escape }}"
+      >
     {% endif %}
 
     {% if template contains 'noindexnofollow' %}
-      <meta name="robots" content="noindex,nofollow">
+      <meta
+        name="robots"
+        content="noindex,nofollow"
+      >
     {% endif %}
 
     {% render 'meta-tags' %}
 
-    <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
+    <script
+      src="{{ 'application.js' | asset_url }}"
+      defer="defer"
+    ></script>
+
+    <script
+      src="{{ 'constants.js' | asset_url }}"
+      defer="defer"
+    ></script>
+    <script
+      src="{{ 'pubsub.js' | asset_url }}"
+      defer="defer"
+    ></script>
+    <script
+      src="{{ 'global.js' | asset_url }}"
+      defer="defer"
+    ></script>
+    <script
+      src="{{ 'details-disclosure.js' | asset_url }}"
+      defer="defer"
+    ></script>
+    <script
+      src="{{ 'details-modal.js' | asset_url }}"
+      defer="defer"
+    ></script>
+    <script
+      src="{{ 'search-form.js' | asset_url }}"
+      defer="defer"
+    ></script>
 
     {%- if settings.animations_reveal_on_scroll -%}
-      <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
+      <script
+        src="{{ 'animations.js' | asset_url }}"
+        defer="defer"
+      ></script>
     {%- endif -%}
 
     {{ content_for_header }}
@@ -292,7 +339,7 @@
         }
     {% endstyle %}
 
-    {{ 'app.css' | asset_url | stylesheet_tag }}
+    {{ 'application.css' | asset_url | stylesheet_tag }}
     {{ 'base.css' | asset_url | stylesheet_tag }}
     <link
       rel="stylesheet"
@@ -334,7 +381,10 @@
 
     {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
       {{ 'component-localization-form.css' | asset_url | stylesheet_tag: preload: true }}
-      <script src="{{ 'localization-form.js' | asset_url }}" defer="defer"></script>
+      <script
+        src="{{ 'localization-form.js' | asset_url }}"
+        defer="defer"
+      ></script>
     {%- endif -%}
 
     {%- if settings.predictive_search_enabled -%}
@@ -354,7 +404,10 @@
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
-    <a class="skip-to-content-link button visually-hidden" href="#MainContent">
+    <a
+      class="skip-to-content-link button visually-hidden"
+      href="#MainContent"
+    >
       {{ 'accessibility.skip_to_text' | t }}
     </a>
 
@@ -426,11 +479,17 @@
     </script>
 
     {%- if settings.predictive_search_enabled -%}
-      <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
+      <script
+        src="{{ 'predictive-search.js' | asset_url }}"
+        defer="defer"
+      ></script>
     {%- endif -%}
 
     {%- if settings.cart_type == 'drawer' -%}
-      <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
+      <script
+        src="{{ 'cart-drawer.js' | asset_url }}"
+        defer="defer"
+      ></script>
     {%- endif -%}
   </body>
 </html>

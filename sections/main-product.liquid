@@ -92,7 +92,10 @@
   {%- endif -%}
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
-  <div class="page-width">
+  <div
+    class="page-width"
+    data-controller="customize"
+  >
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
       <div class="relative grid__item">
         <div class="absolute !w-full top-1/2 -left-1/2">
@@ -111,8 +114,11 @@
           </div>
         </div>
 
-        <div class="relative w-full h-0.5 bg-red-500 !block">
-          <div class="px-2 !font-semibold bg-green-500 !inline-block rounded !absolute transform -translate-x-1/2 top-1/2 -translate-y-1/2 !left-1/2 text-white">
+        <div
+          class="relative w-11/12 mx-auto h-0.5 bg-gray-500 !block"
+          data-customize-target="topFrame"
+        >
+          <div class="px-2 !font-semibold bg-gray-200 !inline-block rounded !absolute transform -translate-x-1/2 top-1/2 -translate-y-1/2 !left-1/2">
             1650mm
           </div>
         </div>
@@ -130,8 +136,11 @@
           </div>
         </div>
 
-        <div class="relative w-full h-0.5 bg-red-500 !block">
-          <div class="px-2 !font-semibold bg-green-500 !inline-block rounded !absolute transform -translate-x-1/2 top-1/2 -translate-y-1/2 !left-1/2 text-white">
+        <div
+          class="relative w-11/12 mx-auto h-0.5 bg-gray-500 !block"
+          data-customize-target="bottomFrame"
+        >
+          <div class="px-2 !font-semibold  bg-gray-200  !inline-block rounded !absolute transform -translate-x-1/2 top-1/2 -translate-y-1/2 !left-1/2">
             1650mm
           </div>
         </div>

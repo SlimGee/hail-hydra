@@ -3,6 +3,7 @@ module.exports = {
     "./layout/*.liquid",
     "./templates/*.liquid",
     "./templates/customers/*.liquid",
+    "./src/**/*js",
     "./sections/*.liquid",
     "./snippets/*.liquid",
   ],

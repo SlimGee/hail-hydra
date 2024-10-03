@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build": "esbuild src/application.js --bundle --minify --sourcemap --outfile=assets/application.js",
+    "watch": "esbuild src/application.js --bundle --sourcemap --outfile=assets/application.js --watch",
+    "watch:css": "tailwindcss -i src/application.css -o assets/application.css --watch",
+    "build:css": "tailwindcss -i src/application.css -o assets/application.css",
+    "dev": "concurrently \"shopify theme dev\" \"npm run watch\" \"npm run watch:css\""
   },
   "repository": {
     "type": "git",
@@ -20,6 +25,7 @@
   "devDependencies": {
     "@shopify/prettier-plugin-liquid": "^1.5.1",
     "autoprefixer": "^10.4.4",
+    "esbuild": "0.24.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.3",
     "postcss": "^8.4.12",
@@ -27,9 +33,11 @@
     "tailwindcss": "^3.4.1"
   },
   "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
     "@tailwindcss/forms": "^0.5.9",
     "@tailwindcss/typography": "^0.5.15",
-    "@trelliscommerce/prettier-config": "^1.0.0"
+    "@trelliscommerce/prettier-config": "^1.0.0",
+    "concurrently": "^9.0.1"
   },
   "lint-staged": {
     "*.{js,css}": "prettier --write"
