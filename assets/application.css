@@ -967,6 +967,22 @@ select {
   width: 91.666667%;
 }
 
+.\!w-11\/12 {
+  width: 91.666667% !important;
+}
+
+.\!w-10\/12 {
+  width: 83.333333% !important;
+}
+
+.\!w-8\/12 {
+  width: 66.666667% !important;
+}
+
+.w-8\/12 {
+  width: 66.666667%;
+}
+
 .\!flex-1 {
   flex: 1 1 0% !important;
 }
@@ -1118,6 +1134,11 @@ select {
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
+}
+
+.px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 }
 
 .pl-3 {

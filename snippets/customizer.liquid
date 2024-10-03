@@ -49,6 +49,8 @@
             class="rounded border-gray-200 !py-5 !text-2xl !w-full"
             form="{{ 'product-form-' | append: section.id }}"
             name="properties[Door Opening Left Height]"
+            data-action="focusin->customize#highlight focusout->customize#unhighlight"
+            data-customize-target-param="leftFrame"
           >
         </div>
 
@@ -59,6 +61,8 @@
             class="rounded border-gray-200 !py-5 !text-2xl !w-full"
             form="{{ 'product-form-' | append: section.id }}"
             name="properties[Door Opening Right Height]"
+            data-action="focusin->customize#highlight focusout->customize#unhighlight"
+            data-customize-target-param="rightFrame"
           >
         </div>
       </div>
