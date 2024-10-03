@@ -94,9 +94,49 @@
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <div class="page-width">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
-      <div class="grid__item product__media-wrapper">
-        {% render 'product-media-gallery', variant_images: variant_images %}
+      <div class="relative grid__item">
+        <div class="absolute !w-full top-1/2 -left-1/2">
+          <div class="relative !w-full h-0.5 bg-red-500 !block transform rotate-90">
+            <div class="px-2 !font-semibold bg-green-500 !inline-block rounded !absolute transform -translate-x-1/2 top-1/2 -translate-y-1/2 !left-1/2 text-white">
+              1650mm
+            </div>
+          </div>
+        </div>
+
+        <div class="absolute !w-full top-1/2 left-1/2">
+          <div class="relative !w-full h-0.5 bg-red-500 !block transform rotate-90">
+            <div class="px-2 !font-semibold bg-green-500 !inline-block rounded !absolute transform -translate-x-1/2 top-1/2 -translate-y-1/2 !left-1/2 text-white">
+              1650mm
+            </div>
+          </div>
+        </div>
+
+        <div class="relative w-full h-0.5 bg-red-500 !block">
+          <div class="px-2 !font-semibold bg-green-500 !inline-block rounded !absolute transform -translate-x-1/2 top-1/2 -translate-y-1/2 !left-1/2 text-white">
+            1650mm
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="p-10 !flex !w-full !h-full">
+            <div
+              class="!block !h-full !w-full first:border-l-0 last:border-r-none border-x border-black shadow mirror"
+              style=""
+            ></div>
+            <div
+              class="!block !h-full !w-full first:border-l-0 last:border-r-0 border-x border-black shadow mirror"
+              style=""
+            ></div>
+          </div>
+        </div>
+
+        <div class="relative w-full h-0.5 bg-red-500 !block">
+          <div class="px-2 !font-semibold bg-green-500 !inline-block rounded !absolute transform -translate-x-1/2 top-1/2 -translate-y-1/2 !left-1/2 text-white">
+            1650mm
+          </div>
+        </div>
       </div>
+
       <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         <section
           id="ProductInfo-{{ section.id }}"
