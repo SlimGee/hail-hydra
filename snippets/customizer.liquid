@@ -1,5 +1,5 @@
-<div class="w-full">
-  <div class="p-5 w-full border">
+<div class="w-full bg-white">
+  <div class="px-8 pt-8 w-full border">
     <div class="uppercase">wardrobe door settings</div>
 
     <div class="w-full">
@@ -96,7 +96,7 @@
               data-customize-target-param="doors"
               data-customize-target="doorsInput"
               data-input-number-target="input"
-              data-action="input->customize#inputChanged"
+              data-action="instomize#inputChanged"
               class="py-5 w-full text-2xl text-center border-gray-200"
             >
             <button
@@ -180,6 +180,16 @@
             </div>
           </div>
         {% endcomment %}
+
+        <div class="pt-16 !pb-0">
+          {%- render 'buy-buttons',
+            block: block,
+            product: product,
+            product_form_id: product_form_id,
+            section_id: section.id,
+            show_pickup_availability: true
+          -%}
+        </div>
       </div>
     </div>
   </div>

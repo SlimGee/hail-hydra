@@ -1,6 +1,6 @@
 <product-info
   id="MainProduct-{{ section.id }}"
-  class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
+  class="section-{{ section.id }}-padding !bg-slate-100 !pb-44 gradient color-{{ section.settings.color_scheme }}"
   data-section="{{ section.id }}"
   data-product-id="{{ product.id }}"
   data-update-url="true"
@@ -138,7 +138,7 @@
           </div>
         </div>
 
-        <div class="relative">
+        <div class="relative p-10">
           <template data-customize-target="doorTemplate">
             <div
               class="!block !h-full !w-full first:border-l-0 last:border-r-none border-x border-black shadow mirror"
@@ -146,7 +146,7 @@
             ></div>
           </template>
           <div
-            class="p-10 !flex !w-full !h-full"
+            class="!flex !w-full !h-full !border-8 shadow"
             data-customize-target="doorsContainer"
           ></div>
         </div>
@@ -595,7 +595,12 @@
                   {%- endif -%}
                 </div>
               {%- when 'customizer' -%}
-                {% render 'customizer', block: block, product: product, section: section %}
+                {% render 'customizer',
+                  block: block,
+                  product: product,
+                  section: section,
+                  product_form_id: product_form_id
+                %}
               {%- when 'popup' -%}
                 <modal-opener
                   class="product-popup-modal__opener quick-add-hidden"
