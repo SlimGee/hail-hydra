@@ -2927,7 +2927,7 @@
       for (let i = this.doorTargets.length; i < doors; i++) {
         this.doorsContainerTarget.insertAdjacentHTML(
           "beforeend",
-          this.doorTemplateTarget.innerHTML,
+          this.doorTemplateTarget.innerHTML.replace(/__index__/g, i + 1),
         );
       }
       this.doorsInputTarget.value = doors;
@@ -2965,6 +2965,16 @@
     }
     inputChanged({ params }) {
       this[`${params.target}Value`] = this[`${params.target}InputTarget`].value;
+    }
+    insertChanged({ target, params }) {
+      this.doorTargets.forEach((door) => {
+        const controller =
+          this.application.getControllerForElementAndIdentifier(
+            door,
+            params.controller,
+          );
+        controller.setInsert(target.value);
+      });
     }
     /**
      * Show an error message below the input
@@ -3032,10 +3042,44 @@
     }
   };
 
+  // src/controllers/door_controller.js
+  var door_controller_default = class extends Controller {
+    static values = {
+      insert: String,
+    };
+    static targets = ["input"];
+    static insertMap = {
+      "grey-mirror": "mirror",
+      "black-mirror": "black-mirror",
+      "painted-glass": "painted-glass",
+      "super-white-mirror": "super-white-mirror",
+    };
+    wasChangedManually = false;
+    connect() {}
+    insertValueChanged(insert) {
+      console.log("insertValueChanged", insert);
+      this.element.classList.remove(
+        ...Object.values(this.constructor.insertMap),
+      );
+      this.element.classList.add(this.constructor.insertMap[insert]);
+    }
+    setInsert(insert) {
+      if (this.wasChangedManually) {
+        return;
+      }
+      this.insertValue = insert;
+    }
+    insertChanged(event) {
+      this.wasChangedManually = true;
+      this.insertValue = event.target.value;
+    }
+  };
+
   // src/application.js
   window.Stimulus = Application.start();
   Stimulus.register("hello", hello_controller_default);
   Stimulus.register("customize", customize_controller_default);
   Stimulus.register("input-number", input_number_controller_default);
+  Stimulus.register("door", door_controller_default);
 })();
 //# sourceMappingURL=application.js.map

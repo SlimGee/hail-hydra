@@ -73,7 +73,7 @@ export default class extends Controller {
     for (let i = this.doorTargets.length; i < doors; i++) {
       this.doorsContainerTarget.insertAdjacentHTML(
         "beforeend",
-        this.doorTemplateTarget.innerHTML,
+        this.doorTemplateTarget.innerHTML.replace(/__index__/g, i + 1),
       );
     }
 
@@ -123,6 +123,17 @@ export default class extends Controller {
 
   inputChanged({ params }) {
     this[`${params.target}Value`] = this[`${params.target}InputTarget`].value;
+  }
+
+  insertChanged({ target, params }) {
+    this.doorTargets.forEach((door) => {
+      const controller = this.application.getControllerForElementAndIdentifier(
+        door,
+        params.controller,
+      );
+
+      controller.setInsert(target.value);
+    });
   }
 
   /**

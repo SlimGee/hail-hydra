@@ -144,7 +144,16 @@
             <div
               class="!block !h-full !w-full first:border-l-0 last:border-r-0 border-x border-black shadow-[inset_-2px_0_4px_rgba(0,0,0,0.3)] mirror"
               data-customize-target="door"
-            ></div>
+              data-controller="door"
+              data-door-insert-value="grey-mirror"
+            >
+              <input
+                data-door-target="input"
+                type="hidden"
+                form="{{ 'product-form-' | append: section.id }}"
+                name="properties[Door __index__ Insert]"
+              >
+            </div>
           </template>
           <div
             class="!flex !w-full !h-full !border-[16px] shadow"

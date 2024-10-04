@@ -19,3 +19,11 @@
     rgb(225, 222, 222)
   );
 }
+
+.black-mirror {
+  background-image: linear-gradient(#fff, #e7eef0 40%, #e2e6e7 60%, #a9acac);
+}
+
+.super-white-mirror {
+  background-image: linear-gradient(#fff, #f2f2f2 40%, #e7eef0 60%, #a9acac);
+}
