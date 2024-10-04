@@ -104,11 +104,15 @@ export default class extends Controller {
     if (errorMessage) errorMessage.remove();
 
     //show error message if value is less than 1
-    if (value < 1) {
+    if (value < 1 || isNaN(value)) {
       this.showError(
         this[`${params.target}InputTarget`],
         "Please enter a value greater than 0",
       );
+
+      if (isNaN(value)) {
+        this[`${params.target}InputTarget`].value = 0;
+      }
 
       return;
     }
