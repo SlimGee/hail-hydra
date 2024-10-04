@@ -22,8 +22,9 @@
             class="rounded border-gray-200 !py-5 !text-2xl !w-full"
             form="{{ 'product-form-' | append: section.id }}"
             name="properties[Door Opening Top Width]"
-            data-action="focusin->customize#highlight focusout->customize#unhighlight"
+            data-action="focusin->customize#highlight focusout->customize#unhighlight input->customize#frameInputChanged"
             data-customize-target-param="topFrame"
+            data-customize-target="topFrameInput"
           >
         </div>
 
@@ -34,9 +35,9 @@
             class="rounded border-gray-200 !py-5 !text-2xl !w-full"
             form="{{ 'product-form-' | append: section.id }}"
             name="properties[Door Opening Bottom Width]"
-
-            data-action="focusin->customize#highlight focusout->customize#unhighlight"
+            data-action="focusin->customize#highlight focusout->customize#unhighlight input->customize#frameInputChanged"
             data-customize-target-param="bottomFrame"
+            data-customize-target="bottomFrameInput"
           >
         </div>
       </div>
@@ -49,8 +50,9 @@
             class="rounded border-gray-200 !py-5 !text-2xl !w-full"
             form="{{ 'product-form-' | append: section.id }}"
             name="properties[Door Opening Left Height]"
-            data-action="focusin->customize#highlight focusout->customize#unhighlight"
+            data-action="focusin->customize#highlight focusout->customize#unhighlight input->customize#frameInputChanged"
             data-customize-target-param="leftFrame"
+            data-customize-target="leftFrameInput"
           >
         </div>
 
@@ -61,8 +63,9 @@
             class="rounded border-gray-200 !py-5 !text-2xl !w-full"
             form="{{ 'product-form-' | append: section.id }}"
             name="properties[Door Opening Right Height]"
-            data-action="focusin->customize#highlight focusout->customize#unhighlight"
+            data-action="focusin->customize#highlight focusout->customize#unhighlight input->customize#frameInputChanged"
             data-customize-target-param="rightFrame"
+            data-customize-target="rightFrameInput"
           >
         </div>
       </div>
