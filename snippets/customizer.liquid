@@ -96,7 +96,7 @@
               data-customize-target-param="doors"
               data-customize-target="doorsInput"
               data-input-number-target="input"
-              data-action="instomize#inputChanged"
+              data-action="customize#inputChanged"
               class="py-5 w-full text-2xl text-center border-gray-200"
             >
             <button
@@ -145,12 +145,15 @@
               name="properties[Frame Color]"
               id="location"
               name="location"
-              class="block prounded border-gray-200 !py-5 !text-2xl !w-full pr-10 pl-3 mt-2 text-gray-900 rounded-md border-0 ring-1 ring-inset ring-gray-300 sm:text-sm sm:leading-6 focus:ring-2 focus:ring-indigo-600"
+              class="block prounded !py-5 !text-2xl !w-full pr-10 pl-3 mt-2"
+              data-action="customize#inputChanged"
+              data-customize-target-param="frameColor"
+              data-customize-target="frameColorInput"
             >
-              <option>White</option>
-              <option>Black</option>
-              <option>Bright Natural</option>
-              <option>Matt Natural</option>
+              <option value="white">White</option>
+              <option value="black">Black</option>
+              <option value="black-natural">Bright Natural</option>
+              <option value="matte-natural">Matt Natural</option>
             </select>
           </div>
         </div>
@@ -181,7 +184,7 @@
           </div>
         {% endcomment %}
 
-        <div class="pt-16 !pb-0">
+        <div class="pt-8 !pb-0">
           {%- render 'buy-buttons',
             block: block,
             product: product,

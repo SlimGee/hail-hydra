@@ -104,6 +104,7 @@
     data-customize-top-frame-value="1650"
     data-customize-bottom-frame-value="1650"
     data-customize-doors-value="2"
+    data-customize-frame-color-value="white"
   >
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
       <div class="relative grid__item">
@@ -141,12 +142,12 @@
         <div class="relative p-10">
           <template data-customize-target="doorTemplate">
             <div
-              class="!block !h-full !w-full first:border-l-0 last:border-r-none border-x border-black shadow mirror"
+              class="!block !h-full !w-full first:border-l-0 last:border-r-0 border-x border-black shadow-[inset_-2px_0_4px_rgba(0,0,0,0.3)] mirror"
               data-customize-target="door"
             ></div>
           </template>
           <div
-            class="!flex !w-full !h-full !border-8 shadow"
+            class="!flex !w-full !h-full !border-[16px] shadow"
             data-customize-target="doorsContainer"
           ></div>
         </div>

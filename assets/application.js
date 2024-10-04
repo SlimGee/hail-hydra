@@ -2879,6 +2879,7 @@
       "doorTemplate",
       "door",
       "doorsInput",
+      "frameColorInput",
     ];
     static classes = [
       "activeFrame",
@@ -2892,6 +2893,13 @@
       topFrame: Number,
       bottomFrame: Number,
       doors: Number,
+      frameColor: String,
+    };
+    static colorMap = {
+      white: "border-white",
+      black: "border-black",
+      "bright-natural": "border-gray-800",
+      "matte-natural": "border-slate-600",
     };
     initialize() {
       Object.keys(this.constructor.values).forEach((value) => {
@@ -2923,6 +2931,12 @@
         );
       }
       this.doorsInputTarget.value = doors;
+    }
+    frameColorValueChanged(color) {
+      this.doorsContainerTarget.classList.remove(
+        ...Object.values(this.constructor.colorMap),
+      );
+      this.doorsContainerTarget.classList.add(this.constructor.colorMap[color]);
     }
     /**
      * Handle frame input change events

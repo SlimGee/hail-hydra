@@ -14,6 +14,7 @@ export default class extends Controller {
     "doorTemplate",
     "door",
     "doorsInput",
+    "frameColorInput",
   ];
 
   static classes = [
@@ -29,6 +30,14 @@ export default class extends Controller {
     topFrame: Number,
     bottomFrame: Number,
     doors: Number,
+    frameColor: String,
+  };
+
+  static colorMap = {
+    white: "border-white",
+    black: "border-black",
+    "bright-natural": "border-gray-800",
+    "matte-natural": "border-slate-600",
   };
 
   initialize() {
@@ -69,6 +78,14 @@ export default class extends Controller {
     }
 
     this.doorsInputTarget.value = doors;
+  }
+
+  frameColorValueChanged(color) {
+    this.doorsContainerTarget.classList.remove(
+      ...Object.values(this.constructor.colorMap),
+    );
+
+    this.doorsContainerTarget.classList.add(this.constructor.colorMap[color]);
   }
 
   /**
