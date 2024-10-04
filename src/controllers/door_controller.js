@@ -19,9 +19,9 @@ export default class extends Controller {
   connect() {}
 
   insertValueChanged(insert) {
-    console.log("insertValueChanged", insert);
     this.element.classList.remove(...Object.values(this.constructor.insertMap));
     this.element.classList.add(this.constructor.insertMap[insert]);
+    this.inputTarget.value = insert;
   }
 
   setInsert(insert) {

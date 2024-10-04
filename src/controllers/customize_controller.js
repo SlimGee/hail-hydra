@@ -15,6 +15,7 @@ export default class extends Controller {
     "door",
     "doorsInput",
     "frameColorInput",
+    "frameTypeInput",
   ];
 
   static classes = [
@@ -31,6 +32,7 @@ export default class extends Controller {
     bottomFrame: Number,
     doors: Number,
     frameColor: String,
+    frameType: String,
   };
 
   static colorMap = {
@@ -38,6 +40,12 @@ export default class extends Controller {
     black: "border-black",
     "bright-natural": "border-gray-800",
     "matte-natural": "border-slate-600",
+  };
+
+  static frameTypes = {
+    "semi-frameless": "!border-8",
+    frameless: "!border-0",
+    "dividing-stripes": "!border-4",
   };
 
   initialize() {
@@ -121,7 +129,15 @@ export default class extends Controller {
     this[`${params.target}Value`] = this[`${params.target}InputTarget`].value;
   }
 
+  frameTypeValueChanged(type) {
+    this.doorsContainerTarget.classList.remove(
+      ...Object.values(this.constructor.frameTypes),
+    );
+    this.doorsContainerTarget.classList.add(this.constructor.frameTypes[type]);
+  }
+
   inputChanged({ params }) {
+    console.log(`inputChanged ${params.target}InputTarget`);
     this[`${params.target}Value`] = this[`${params.target}InputTarget`].value;
   }
 

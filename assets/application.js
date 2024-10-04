@@ -2880,6 +2880,7 @@
       "door",
       "doorsInput",
       "frameColorInput",
+      "frameTypeInput",
     ];
     static classes = [
       "activeFrame",
@@ -2894,12 +2895,18 @@
       bottomFrame: Number,
       doors: Number,
       frameColor: String,
+      frameType: String,
     };
     static colorMap = {
       white: "border-white",
       black: "border-black",
       "bright-natural": "border-gray-800",
       "matte-natural": "border-slate-600",
+    };
+    static frameTypes = {
+      "semi-frameless": "!border-8",
+      frameless: "!border-0",
+      "dividing-stripes": "!border-4",
     };
     initialize() {
       Object.keys(this.constructor.values).forEach((value) => {
@@ -2963,7 +2970,16 @@
       }
       this[`${params.target}Value`] = this[`${params.target}InputTarget`].value;
     }
+    frameTypeValueChanged(type) {
+      this.doorsContainerTarget.classList.remove(
+        ...Object.values(this.constructor.frameTypes),
+      );
+      this.doorsContainerTarget.classList.add(
+        this.constructor.frameTypes[type],
+      );
+    }
     inputChanged({ params }) {
+      console.log(`inputChanged ${params.target}InputTarget`);
       this[`${params.target}Value`] = this[`${params.target}InputTarget`].value;
     }
     insertChanged({ target, params }) {
@@ -3057,11 +3073,11 @@
     wasChangedManually = false;
     connect() {}
     insertValueChanged(insert) {
-      console.log("insertValueChanged", insert);
       this.element.classList.remove(
         ...Object.values(this.constructor.insertMap),
       );
       this.element.classList.add(this.constructor.insertMap[insert]);
+      this.inputTarget.value = insert;
     }
     setInsert(insert) {
       if (this.wasChangedManually) {

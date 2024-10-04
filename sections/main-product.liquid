@@ -105,9 +105,10 @@
     data-customize-bottom-frame-value="1650"
     data-customize-doors-value="2"
     data-customize-frame-color-value="white"
+    data-customize-frame-type-value="semi-frameless"
   >
-    <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
-      <div class="relative grid__item">
+    <div class="product items-start product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
+      <div class="relative !min-h-96 grid__item">
         <div class="absolute !w-full top-1/2 -left-1/2">
           <div
             class="relative !w-8/12 mx-auto h-0.5 bg-gray-500 !block transform -rotate-90"
@@ -139,10 +140,10 @@
           </div>
         </div>
 
-        <div class="relative p-10">
+        <div class="relative p-10 !h-full">
           <template data-customize-target="doorTemplate">
             <div
-              class="!block !h-full !w-full first:border-l-0 last:border-r-0 border-x border-black shadow-[inset_-2px_0_4px_rgba(0,0,0,0.3)] mirror"
+              class="!block !h-full !w-full !min-h-[70vh] first:border-l-0 last:border-r-0 border-x border-black shadow-[inset_-2px_0_4px_rgba(0,0,0,0.3)] mirror"
               data-customize-target="door"
               data-controller="door"
               data-door-insert-value="grey-mirror"
@@ -156,7 +157,7 @@
             </div>
           </template>
           <div
-            class="!flex !w-full !h-full !border-[16px] shadow"
+            class="!flex !w-full !h-full !min-h-96 !border-8 shadow"
             data-customize-target="doorsContainer"
           ></div>
         </div>
