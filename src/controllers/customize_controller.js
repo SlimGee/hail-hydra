@@ -10,6 +10,10 @@ export default class extends Controller {
     "rightFrameInput",
     "topFrameInput",
     "bottomFrameInput",
+    "doorsContainer",
+    "doorTemplate",
+    "door",
+    "doorsInput",
   ];
 
   static classes = [
@@ -24,6 +28,7 @@ export default class extends Controller {
     rightFrame: Number,
     topFrame: Number,
     bottomFrame: Number,
+    doors: Number,
   };
 
   initialize() {
@@ -38,6 +43,32 @@ export default class extends Controller {
         targetElement.firstElementChild.innerHTML = `${newValue}mm`;
       };
     });
+  }
+
+  /**
+   * Append the number of doors when the value changes
+   * Mutate the DOM to show the number of doors
+   * @param {Number} doors
+   * @returns {void}
+   */
+  doorsValueChanged(doors) {
+    //add or remove doors from the right side
+
+    if (this.doorTargets.length > doors) {
+      for (let i = doors; i < this.doorTargets.length; i++) {
+        this.doorTargets[i].remove();
+      }
+      return;
+    }
+
+    for (let i = this.doorTargets.length; i < doors; i++) {
+      this.doorsContainerTarget.insertAdjacentHTML(
+        "beforeend",
+        this.doorTemplateTarget.innerHTML,
+      );
+    }
+
+    this.doorsInputTarget.value = doors;
   }
 
   /**
@@ -66,6 +97,10 @@ export default class extends Controller {
     }
 
     // Update the corresponding value in state
+    this[`${params.target}Value`] = this[`${params.target}InputTarget`].value;
+  }
+
+  inputChanged({ params }) {
     this[`${params.target}Value`] = this[`${params.target}InputTarget`].value;
   }
 

@@ -103,6 +103,7 @@
     data-customize-right-frame-value="2050"
     data-customize-top-frame-value="1650"
     data-customize-bottom-frame-value="1650"
+    data-customize-doors-value="2"
   >
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
       <div class="relative grid__item">
@@ -138,16 +139,16 @@
         </div>
 
         <div class="relative">
-          <div class="p-10 !flex !w-full !h-full">
+          <template data-customize-target="doorTemplate">
             <div
               class="!block !h-full !w-full first:border-l-0 last:border-r-none border-x border-black shadow mirror"
-              style=""
+              data-customize-target="door"
             ></div>
-            <div
-              class="!block !h-full !w-full first:border-l-0 last:border-r-0 border-x border-black shadow mirror"
-              style=""
-            ></div>
-          </div>
+          </template>
+          <div
+            class="p-10 !flex !w-full !h-full"
+            data-customize-target="doorsContainer"
+          ></div>
         </div>
 
         <div

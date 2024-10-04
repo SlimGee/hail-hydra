@@ -2875,6 +2875,10 @@
       "rightFrameInput",
       "topFrameInput",
       "bottomFrameInput",
+      "doorsContainer",
+      "doorTemplate",
+      "door",
+      "doorsInput",
     ];
     static classes = [
       "activeFrame",
@@ -2887,6 +2891,7 @@
       rightFrame: Number,
       topFrame: Number,
       bottomFrame: Number,
+      doors: Number,
     };
     initialize() {
       Object.keys(this.constructor.values).forEach((value) => {
@@ -2897,6 +2902,27 @@
           targetElement.firstElementChild.innerHTML = `${newValue}mm`;
         };
       });
+    }
+    /**
+     * Append the number of doors when the value changes
+     * Mutate the DOM to show the number of doors
+     * @param {Number} doors
+     * @returns {void}
+     */
+    doorsValueChanged(doors) {
+      if (this.doorTargets.length > doors) {
+        for (let i = doors; i < this.doorTargets.length; i++) {
+          this.doorTargets[i].remove();
+        }
+        return;
+      }
+      for (let i = this.doorTargets.length; i < doors; i++) {
+        this.doorsContainerTarget.insertAdjacentHTML(
+          "beforeend",
+          this.doorTemplateTarget.innerHTML,
+        );
+      }
+      this.doorsInputTarget.value = doors;
     }
     /**
      * Handle frame input change events
@@ -2918,6 +2944,9 @@
         );
         return;
       }
+      this[`${params.target}Value`] = this[`${params.target}InputTarget`].value;
+    }
+    inputChanged({ params }) {
       this[`${params.target}Value`] = this[`${params.target}InputTarget`].value;
     }
     /**
@@ -2968,9 +2997,28 @@
     }
   };
 
+  // src/controllers/input_number_controller.js
+  var input_number_controller_default = class extends Controller {
+    static targets = ["input"];
+    static values = { min: Number, max: Number };
+    increment() {
+      if (this.maxValue && Number(this.inputTarget.value) >= this.maxValue)
+        return;
+      this.inputTarget.value = parseInt(this.inputTarget.value, 10) + 1;
+      this.inputTarget.dispatchEvent(new Event("input"));
+    }
+    decrement() {
+      if (this.minValue && Number(this.inputTarget.value) <= this.minValue)
+        return;
+      this.inputTarget.value = parseInt(this.inputTarget.value, 10) - 1;
+      this.inputTarget.dispatchEvent(new Event("input"));
+    }
+  };
+
   // src/application.js
   window.Stimulus = Application.start();
   Stimulus.register("hello", hello_controller_default);
   Stimulus.register("customize", customize_controller_default);
+  Stimulus.register("input-number", input_number_controller_default);
 })();
 //# sourceMappingURL=application.js.map
