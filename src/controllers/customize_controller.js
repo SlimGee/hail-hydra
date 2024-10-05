@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
+import axios from "axios";
 
 export default class extends Controller {
   static targets = [
@@ -33,6 +34,8 @@ export default class extends Controller {
     doors: Number,
     frameColor: String,
     frameType: String,
+    productId: Number,
+    domain: String,
   };
 
   static colorMap = {
@@ -47,6 +50,23 @@ export default class extends Controller {
     frameless: "!border-0",
     "dividing-stripes": "!border-4",
   };
+
+  prices = {
+    insert: {
+      "grey-mirror": 80,
+      "black-mirror": 80,
+      "super-white-mirror": 80,
+    },
+
+    frame: {
+      "semi-frameless": 100,
+      frameless: 135,
+      "dividing-stripes": 120,
+      "dividing-strips": 26,
+    },
+  };
+
+  PRODUCT_VARIANT_ENDPOINT = "/products/__productId__/variants";
 
   initialize() {
     // Register dynamic event handler for value changes
@@ -86,6 +106,21 @@ export default class extends Controller {
     }
 
     this.doorsInputTarget.value = doors;
+  }
+
+  domainValueChanged(domain) {
+    axios.defaults.baseURL = `https://${domain.trim()}/api/api`;
+    console.log(domain);
+  }
+
+  productIdValueChanged(productId) {
+    axios
+      .post(this.PRODUCT_VARIANT_ENDPOINT.replace("__productId__", productId), {
+        productId,
+      })
+      .then((response) => {
+        console.log(response.data);
+      });
   }
 
   frameColorValueChanged(color) {
