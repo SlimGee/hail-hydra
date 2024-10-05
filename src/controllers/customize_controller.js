@@ -109,7 +109,7 @@ export default class extends Controller {
   }
 
   domainValueChanged(domain) {
-    axios.defaults.baseURL = `https://${domain.trim()}/api/api`;
+    axios.defaults.baseURL = `https://${domain.trim()}/apps/api/api`;
     console.log(domain);
   }
 

@@ -6031,7 +6031,7 @@
       this.doorsInputTarget.value = doors;
     }
     domainValueChanged(domain) {
-      axios_default.defaults.baseURL = `https://${domain.trim()}/api/api`;
+      axios_default.defaults.baseURL = `https://${domain.trim()}/apps/api/api`;
       console.log(domain);
     }
     productIdValueChanged(productId) {
