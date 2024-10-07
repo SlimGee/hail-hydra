@@ -5957,6 +5957,8 @@
       "frameColorInput",
       "frameTypeInput",
       "pricing",
+      "loadingTemplate",
+      "variantId",
     ];
     static classes = [
       "activeFrame",
@@ -6030,11 +6032,20 @@
       }
     }
     updatePricing() {
-      let payload = {};
+      this.pricingTarget.innerHTML = this.loadingTemplateTarget.innerHTML;
+      let payload = {
+        door_inserts: [],
+      };
       let productId = this.productIdValue;
       Object.keys(this.constructor.values).forEach((value) => {
-        console.log(this.camelToSnakeCase(value));
         payload[this.camelToSnakeCase(value)] = this[`${value}Value`];
+      });
+      this.doorTargets.forEach((door) => {
+        const controller =
+          this.application.getControllerForElementAndIdentifier(door, "door");
+        if (controller) {
+          payload.door_inserts.push(controller.payload);
+        }
       });
       if (
         window.location.hostname == "localhost" ||
@@ -6052,7 +6063,11 @@
           })
           .then((response) => {
             this.pricingTarget.innerHTML =
-              response.data.productVariants[0].price;
+              "$" + response.data.productVariants[0].price + " AUD";
+            let variantId2 = response.data.productVariants[0].id;
+            this.variantIdTarget.value = variantId2
+              .substring(variantId2.lastIndexOf("/") + 1)
+              .trim();
           })
           .catch((error2) => {
             console.log(error2);
@@ -6068,7 +6083,10 @@
           })
           .then((response) => {
             this.pricingTarget.innerHTML =
-              response.data.productVariants[0].price;
+              "$" + response.data.productVariants[0].price + " AUD";
+            this.variantIdTarget.value = variantId.substring(
+              variantId.lastIndexOf("/") + 1,
+            );
           })
           .catch((error2) => {
             console.log(error2);
@@ -6084,6 +6102,7 @@
         ...Object.values(this.constructor.colorMap),
       );
       this.doorsContainerTarget.classList.add(this.constructor.colorMap[color]);
+      this.updatePricing();
     }
     /**
      * Handle frame input change events
@@ -6118,9 +6137,9 @@
       this.doorsContainerTarget.classList.add(
         this.constructor.frameTypes[type],
       );
+      this.updatePricing();
     }
     inputChanged({ params }) {
-      console.log(`inputChanged ${params.target}InputTarget`);
       this[`${params.target}Value`] = this[`${params.target}InputTarget`].value;
     }
     insertChanged({ target, params }) {
@@ -6132,6 +6151,7 @@
           );
         controller.setInsert(target.value);
       });
+      this.updatePricing();
     }
     /**
      * Show an error message below the input
@@ -6229,6 +6249,11 @@
     insertChanged(event) {
       this.wasChangedManually = true;
       this.insertValue = event.target.value;
+    }
+    get payload() {
+      return {
+        insert: this.insertValue,
+      };
     }
   };
 

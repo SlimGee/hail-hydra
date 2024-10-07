@@ -18,6 +18,8 @@ export default class extends Controller {
     "frameColorInput",
     "frameTypeInput",
     "pricing",
+    "loadingTemplate",
+    "variantId",
   ];
 
   static classes = [
@@ -107,19 +109,32 @@ export default class extends Controller {
   }
 
   updatePricing() {
-    let payload = {};
+    this.pricingTarget.innerHTML = this.loadingTemplateTarget.innerHTML;
+
+    let payload = {
+      door_inserts: [],
+    };
     let productId = this.productIdValue;
 
     Object.keys(this.constructor.values).forEach((value) => {
-      console.log(this.camelToSnakeCase(value));
       payload[this.camelToSnakeCase(value)] = this[`${value}Value`];
+    });
+
+    this.doorTargets.forEach((door) => {
+      const controller = this.application.getControllerForElementAndIdentifier(
+        door,
+        "door",
+      );
+
+      if (controller) {
+        payload.door_inserts.push(controller.payload);
+      }
     });
 
     if (
       window.location.hostname == "localhost" ||
       window.location.hostname == "127.0.0.1"
     ) {
-      //let baseUrl = `https://${this.domainValue.trim()}/apps/api/api`;
       let baseUrl =
         "https://703a-2c0f-f8f0-726c-0-1b75-8bda-567d-b358.ngrok-free.app/api";
       let url =
@@ -132,7 +147,14 @@ export default class extends Controller {
           customizations: payload,
         })
         .then((response) => {
-          this.pricingTarget.innerHTML = response.data.productVariants[0].price;
+          this.pricingTarget.innerHTML =
+            "$" + response.data.productVariants[0].price + " AUD";
+
+          let variantId = response.data.productVariants[0].id;
+
+          this.variantIdTarget.value = variantId
+            .substring(variantId.lastIndexOf("/") + 1)
+            .trim();
         })
         .catch((error) => {
           console.log(error);
@@ -147,7 +169,11 @@ export default class extends Controller {
           customizations: payload,
         })
         .then((response) => {
-          this.pricingTarget.innerHTML = response.data.productVariants[0].price;
+          this.pricingTarget.innerHTML =
+            "$" + response.data.productVariants[0].price + " AUD";
+          this.variantIdTarget.value = variantId.substring(
+            variantId.lastIndexOf("/") + 1,
+          );
         })
         .catch((error) => {
           console.log(error);
@@ -167,6 +193,7 @@ export default class extends Controller {
     );
 
     this.doorsContainerTarget.classList.add(this.constructor.colorMap[color]);
+    this.updatePricing();
   }
 
   /**
@@ -208,10 +235,10 @@ export default class extends Controller {
       ...Object.values(this.constructor.frameTypes),
     );
     this.doorsContainerTarget.classList.add(this.constructor.frameTypes[type]);
+    this.updatePricing();
   }
 
   inputChanged({ params }) {
-    console.log(`inputChanged ${params.target}InputTarget`);
     this[`${params.target}Value`] = this[`${params.target}InputTarget`].value;
   }
 
@@ -224,6 +251,8 @@ export default class extends Controller {
 
       controller.setInsert(target.value);
     });
+
+    this.updatePricing();
   }
 
   /**

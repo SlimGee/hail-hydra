@@ -36,4 +36,10 @@ export default class extends Controller {
     this.wasChangedManually = true;
     this.insertValue = event.target.value;
   }
+
+  get payload() {
+    return {
+      insert: this.insertValue,
+    };
+  }
 }
