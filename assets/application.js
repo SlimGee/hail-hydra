@@ -5092,8 +5092,8 @@
           customizations: payload
         }).then((response) => {
           this.pricingTarget.innerHTML = "$" + response.data.productVariants[0].price + " AUD";
-          let variantId2 = response.data.productVariants[0].id;
-          this.variantIdTarget.value = variantId2.substring(variantId2.lastIndexOf("/") + 1).trim();
+          let variantId = response.data.productVariants[0].id;
+          this.variantIdTarget.value = variantId.substring(variantId.lastIndexOf("/") + 1).trim();
         }).catch((error2) => {
           console.log(error2);
         });
@@ -5106,6 +5106,8 @@
           this.variantIdTarget.value = variantId.substring(
             variantId.lastIndexOf("/") + 1
           );
+          let variantId = response.data.productVariants[0].id;
+          this.variantIdTarget.value = variantId.substring(variantId.lastIndexOf("/") + 1).trim();
         }).catch((error2) => {
           console.log(error2);
         });
