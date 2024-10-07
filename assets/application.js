@@ -5063,7 +5063,7 @@
       if (window.location.hostname == "localhost" || window.location.hostname == "127.0.0.1") {
         axios_default.defaults.baseURL = `http://localhost:3000/`;
       } else {
-        axios_default.defaults.baseURL = `http://${domain.trim()}/apps/api/api`;
+        axios_default.defaults.baseURL = `https://${domain.trim()}/apps/api/api`;
         console.log(axios_default.defaults.baseURL);
       }
     }
@@ -5098,10 +5098,7 @@
           console.log(error2);
         });
       } else {
-        let url = this.PRODUCT_VARIANT_ENDPOINT.replace(
-          "__productId__",
-          productId
-        );
+        let url = `https://${this.domainValue.trim()}/apps/api/api` + this.PRODUCT_VARIANT_ENDPOINT.replace("__productId__", productId);
         axios_default.post(url, {
           customizations: payload
         }).then((response) => {
