@@ -5956,6 +5956,7 @@
       "doorsInput",
       "frameColorInput",
       "frameTypeInput",
+      "pricing",
     ];
     static classes = [
       "activeFrame",
@@ -5985,24 +5986,12 @@
       frameless: "!border-0",
       "dividing-stripes": "!border-4",
     };
-    prices = {
-      insert: {
-        "grey-mirror": 80,
-        "black-mirror": 80,
-        "super-white-mirror": 80,
-      },
-      frame: {
-        "semi-frameless": 100,
-        frameless: 135,
-        "dividing-stripes": 120,
-        "dividing-strips": 26,
-      },
-    };
     PRODUCT_VARIANT_ENDPOINT = "/products/__productId__/variants";
     initialize() {
       Object.keys(this.constructor.values).forEach((value) => {
         if (this[`${value}ValueChanged`]) return;
         this[`${value}ValueChanged`] = function (newValue) {
+          this.updatePricing();
           this[`${value}InputTarget`].value = newValue;
           const targetElement = this[`${value}Target`];
           targetElement.firstElementChild.innerHTML = `${newValue}mm`;
@@ -6031,21 +6020,65 @@
       this.doorsInputTarget.value = doors;
     }
     domainValueChanged(domain) {
-      axios_default.defaults.baseURL = `https://${domain.trim()}/apps/api/api`;
-      console.log(domain);
+      if (
+        window.location.hostname == "localhost" ||
+        window.location.hostname == "127.0.0.1"
+      ) {
+        axios_default.defaults.baseURL = `http://localhost:3000/`;
+      } else {
+        axios_default.defaults.baseURL = `http://${domain.trim()}/apps/api/api`;
+      }
     }
-    productIdValueChanged(productId) {
-      axios_default
-        .post(
-          this.PRODUCT_VARIANT_ENDPOINT.replace("__productId__", productId),
-          {
-            productId,
-          },
-        )
-        .then((response) => {
-          console.log(response.data);
-        });
+    updatePricing() {
+      let payload = {};
+      let productId = this.productIdValue;
+      Object.keys(this.constructor.values).forEach((value) => {
+        console.log(this.camelToSnakeCase(value));
+        payload[this.camelToSnakeCase(value)] = this[`${value}Value`];
+      });
+      if (
+        window.location.hostname == "localhost" ||
+        window.location.hostname == "127.0.0.1"
+      ) {
+        let baseUrl =
+          "https://703a-2c0f-f8f0-726c-0-1b75-8bda-567d-b358.ngrok-free.app/api";
+        let url =
+          baseUrl +
+          this.PRODUCT_VARIANT_ENDPOINT.replace("__productId__", productId) +
+          "?shop=hail-hydra-15.myshopify.com";
+        axios_default
+          .post(url, {
+            customizations: payload,
+          })
+          .then((response) => {
+            this.pricingTarget.innerHTML =
+              response.data.productVariants[0].price;
+          })
+          .catch((error2) => {
+            console.log(error2);
+          });
+      } else {
+        let url = this.PRODUCT_VARIANT_ENDPOINT.replace(
+          "__productId__",
+          productId,
+        );
+        axios_default
+          .post(url, {
+            customizations: payload,
+          })
+          .then((response) => {
+            this.pricingTarget.innerHTML =
+              response.data.productVariants[0].price;
+          })
+          .catch((error2) => {
+            console.log(error2);
+          });
+      }
     }
+    camelToSnakeCase(str) {
+      return str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
+    }
+    productIdValueChanged(productId) {}
     frameColorValueChanged(color) {
       this.doorsContainerTarget.classList.remove(
         ...Object.values(this.constructor.colorMap),
