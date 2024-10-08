@@ -6028,7 +6028,8 @@
       ) {
         axios_default.defaults.baseURL = `http://localhost:3000/`;
       } else {
-        axios_default.defaults.baseURL = `http://${domain.trim()}/apps/api/api`;
+        axios_default.defaults.baseURL = `https://${domain.trim()}/apps/api/api`;
+        console.log(axios_default.defaults.baseURL);
       }
     }
     updatePricing() {
@@ -6064,19 +6065,18 @@
           .then((response) => {
             this.pricingTarget.innerHTML =
               "$" + response.data.productVariants[0].price + " AUD";
-            let variantId2 = response.data.productVariants[0].id;
-            this.variantIdTarget.value = variantId2
-              .substring(variantId2.lastIndexOf("/") + 1)
+            let variantId = response.data.productVariants[0].id;
+            this.variantIdTarget.value = variantId
+              .substring(variantId.lastIndexOf("/") + 1)
               .trim();
           })
           .catch((error2) => {
             console.log(error2);
           });
       } else {
-        let url = this.PRODUCT_VARIANT_ENDPOINT.replace(
-          "__productId__",
-          productId,
-        );
+        let url =
+          `https://${this.domainValue.trim()}/apps/api/api` +
+          this.PRODUCT_VARIANT_ENDPOINT.replace("__productId__", productId);
         axios_default
           .post(url, {
             customizations: payload,
@@ -6084,9 +6084,10 @@
           .then((response) => {
             this.pricingTarget.innerHTML =
               "$" + response.data.productVariants[0].price + " AUD";
-            this.variantIdTarget.value = variantId.substring(
-              variantId.lastIndexOf("/") + 1,
-            );
+            let variantId = response.data.productVariants[0].id;
+            this.variantIdTarget.value = variantId
+              .substring(variantId.lastIndexOf("/") + 1)
+              .trim();
           })
           .catch((error2) => {
             console.log(error2);

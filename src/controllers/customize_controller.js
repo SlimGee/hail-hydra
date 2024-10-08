@@ -104,7 +104,8 @@ export default class extends Controller {
     ) {
       axios.defaults.baseURL = `http://localhost:3000/`;
     } else {
-      axios.defaults.baseURL = `http://${domain.trim()}/apps/api/api`;
+      axios.defaults.baseURL = `https://${domain.trim()}/apps/api/api`;
+      console.log(axios.defaults.baseURL);
     }
   }
 
@@ -160,10 +161,9 @@ export default class extends Controller {
           console.log(error);
         });
     } else {
-      let url = this.PRODUCT_VARIANT_ENDPOINT.replace(
-        "__productId__",
-        productId,
-      );
+      let url =
+        `https://${this.domainValue.trim()}/apps/api/api` +
+        this.PRODUCT_VARIANT_ENDPOINT.replace("__productId__", productId);
       axios
         .post(url, {
           customizations: payload,
@@ -171,9 +171,11 @@ export default class extends Controller {
         .then((response) => {
           this.pricingTarget.innerHTML =
             "$" + response.data.productVariants[0].price + " AUD";
-          this.variantIdTarget.value = variantId.substring(
-            variantId.lastIndexOf("/") + 1,
-          );
+          let variantId = response.data.productVariants[0].id;
+
+          this.variantIdTarget.value = variantId
+            .substring(variantId.lastIndexOf("/") + 1)
+            .trim();
         })
         .catch((error) => {
           console.log(error);
