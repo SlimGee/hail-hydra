@@ -171,6 +171,7 @@ export default class extends Controller {
         .then((response) => {
           this.pricingTarget.innerHTML =
             "$" + response.data.productVariants[0].price + " AUD";
+          //
           let variantId = response.data.productVariants[0].id;
 
           this.variantIdTarget.value = variantId
