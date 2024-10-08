@@ -339,6 +339,7 @@
         }
     {% endstyle %}
 
+    {{ 'app.css' | asset_url | stylesheet_tag }}
     {{ 'application.css' | asset_url | stylesheet_tag }}
     {{ 'base.css' | asset_url | stylesheet_tag }}
     <link

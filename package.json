@@ -8,8 +8,8 @@
     "prepare": "husky install",
     "build": "esbuild src/application.js --bundle --minify --sourcemap --outfile=assets/application.js",
     "watch": "esbuild src/application.js --bundle --sourcemap --outfile=assets/application.js --watch",
-    "watch:css": "tailwindcss -i src/application.css -o assets/application.css --watch",
-    "build:css": "tailwindcss -i src/application.css -o assets/application.css",
+    "watch:css": "tailwindcss -i src/application.css -o assets/app.css --watch",
+    "build:css": "tailwindcss -i src/application.css -o assets/app.css",
     "dev": "concurrently \"shopify theme dev\" \"npm run watch\" \"npm run watch:css\""
   },
   "repository": {
@@ -38,7 +38,8 @@
     "@tailwindcss/typography": "^0.5.15",
     "@trelliscommerce/prettier-config": "^1.0.0",
     "axios": "^1.7.7",
-    "concurrently": "^9.0.1"
+    "concurrently": "^9.0.1",
+    "tippy.js": "^6.3.7"
   },
   "lint-staged": {
     "*.{js,css}": "prettier --write"
