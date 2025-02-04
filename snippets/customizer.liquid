@@ -112,7 +112,10 @@
           </div>
         </div>
 
-        <div class="mt-3">
+        <div
+          class="mt-3"
+          data-controller="frame-style"
+        >
           <div>
             <label
               for="location"
@@ -125,7 +128,7 @@
               id="location"
               name="location"
               class="block prounded !py-5 !text-2xl !w-full pr-10 pl-3 mt-2"
-              data-action="customize#inputChanged"
+              data-action="customize#inputChanged frame-style#handle"
               data-customize-target-param="frameType"
               data-customize-target="frameTypeInput"
             >
@@ -135,10 +138,65 @@
               <option value="dividing-stripes">Dividing Stripes</option>
             </select>
           </div>
+
+          <div
+            class="mt-3"
+            data-frame-style-target="destination"
+          ></div>
+          <template data-frame-style-target="template">
+            <div
+              class=" !flex-1"
+              data-controller="stripe-number"
+            >
+              <label for="wardrobe-name">Number of stripes (between 1 - 4)</label>
+              <input
+                type="text"
+                class="!py-5 !text-2xl !w-full"
+                form="{{ 'product-form-' | append: section.id }}"
+                name="properties[Number of dividing stripes]"
+                value="2"
+                data-action="stripe-number#handle"
+              >
+            </div>
+          </template>
         </div>
 
-        <div class="mt-8">
-          <div>
+        <div
+          class="mt-8"
+          data-controller="track-style"
+        >
+          <div class="mb-2">
+            <label
+              for="wardrobe_position"
+              class="block font-medium leading-6"
+              >Sliding tracks needed?</label
+            >
+            <select
+              data-track-style-target="prompt"
+              form="{{ 'product-form-' | append: section.id }}"
+              name="properties[Sliding Tracks Needed]"
+              id="wardrobe_position"
+              class="block prounded !py-5 !text-2xl !w-full pr-10 pl-3 mt-2"
+              data-action="track-style#handle"
+            >
+              <option value="Yes">Yes</option>
+              <option
+                value="No"
+                selected
+              >
+                No
+              </option>
+            </select>
+          </div>
+
+          <div
+            data-track-style-target="styleParams"
+            class="mt-3"
+          ></div>
+
+          <template
+            data-track-style-target="template"
+          >
             <label
               for="track_style"
               class="block font-medium leading-6"
@@ -185,7 +243,7 @@
                 </label>
               </div>
             </div>
-          </div>
+          </template>
         </div>
 
         <div class="mt-3">
@@ -211,7 +269,10 @@
           </div>
         </div>
 
-        <div class="mt-8">
+        <div
+          class="mt-8"
+          data-controller="frame-color"
+        >
           <div>
             <label
               for="location"
@@ -223,7 +284,7 @@
               name="properties[Frame Color]"
               id="location"
               class="block  prounded !py-5 !text-2xl !w-full pr-10 pl-3 mt-2"
-              data-action="customize#inputChanged"
+              data-action="customize#inputChanged frame-color#handle"
               data-customize-target-param="frameColor"
               data-customize-target="frameColorInput"
             >
@@ -235,10 +296,28 @@
               <option value="brushed-gold">Brushed Gold</option>
               <option value="bright-bronze">Bright Bronze</option>
               <option value="matte-bronze">Matte Bronze</option>
-              <option value="black-natural">Bright Natural</option>
-              <option value="matte-natural">Matte Natural</option>
+              <option value="custom">Custom Color</option>
             </select>
           </div>
+
+          <div
+            class="mt-3"
+            data-frame-color-target="destination"
+          ></div>
+          <template data-frame-color-target="template">
+            <div
+              class=" !flex-1"
+            >
+              <label for="wardrobe-name">Custom Color</label>
+              <input
+                type="text"
+                class="!py-5 !text-2xl !w-full"
+                form="{{ 'product-form-' | append: section.id }}"
+                name="properties[Custom Frame Color]"
+                required
+              >
+            </div>
+          </template>
         </div>
 
         <div class="mt-8 uppercase">Door type and insert colors</div>

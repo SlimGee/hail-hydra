@@ -136,8 +136,7 @@ export default class extends Controller {
       window.location.hostname == "localhost" ||
       window.location.hostname == "127.0.0.1"
     ) {
-      let baseUrl =
-        "https://703a-2c0f-f8f0-726c-0-1b75-8bda-567d-b358.ngrok-free.app/api";
+      let baseUrl = "https://calf-enough-remotely.ngrok-free.app/api";
       let url =
         baseUrl +
         this.PRODUCT_VARIANT_ENDPOINT.replace("__productId__", productId) +
